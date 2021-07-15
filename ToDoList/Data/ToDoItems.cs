@@ -24,6 +24,6 @@ namespace ToDoList.Data
         [ForeignKey(nameof(User))]
         public long UserId { get; set; }
 
-        //public User Users { get; set; }
+        public User Users { get; set; }
     }
 }

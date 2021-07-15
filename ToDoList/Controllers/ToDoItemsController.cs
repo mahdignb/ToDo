@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ToDoList.Data;
 using Serilog;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -57,6 +58,7 @@ namespace ToDoList.Controllers
 
         // POST api/<ToDoItemsController>
         [SwaggerOperation(Tags = new[] { "CreateTasks" })]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ActionName(nameof(ToDoItems))]
         [HttpPost]
         public async Task<ActionResult<ToDoItems>> CreateTodoItem(ToDoItems toDo)

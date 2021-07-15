@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ToDoList.Configuration;
 using ToDoList.Data;
+using AutoMapper;
 
 namespace ToDoList
 {
@@ -32,12 +35,19 @@ namespace ToDoList
                 Configuration.GetConnectionString("DefaultConnection")
                 ));
 
+            //IdentityUser
+            services.AddAuthentication();
+            services.ConfigureIdentity();
+
             services.AddCors(o => {
                 o.AddPolicy("AllowAll", builder =>
                  builder.AllowAnyOrigin()
                  .AllowAnyMethod()
                  .AllowAnyHeader());
             });
+
+            services.AddAutoMapper(typeof(MapperInitializer));
+
 
             services.AddSwaggerGen(c =>
             {
