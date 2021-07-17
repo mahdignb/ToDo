@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using ToDoList.Configuration;
 using ToDoList.Data;
 using AutoMapper;
+using ToDoList.Services;
 
 namespace ToDoList
 {
@@ -38,6 +39,7 @@ namespace ToDoList
             //IdentityUser
             services.AddAuthentication();
             services.ConfigureIdentity();
+            services.ConfigureJwt(Configuration);
 
             services.AddCors(o => {
                 o.AddPolicy("AllowAll", builder =>
@@ -47,7 +49,7 @@ namespace ToDoList
             });
 
             services.AddAutoMapper(typeof(MapperInitializer));
-
+            services.AddScoped<IAuthManager, AuthManager>();
 
             services.AddSwaggerGen(c =>
             {

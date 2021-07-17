@@ -1,4 +1,3 @@
-C:\Users\Mahdi\Documents\Visual Studio 2019\ToDoList\ToDoList\obj\Debug\net5.0\ToDoList.csprojAssemblyReference.cache
 C:\Users\Mahdi\Documents\Visual Studio 2019\ToDoList\ToDoList\obj\Debug\net5.0\ToDoList.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Mahdi\Documents\Visual Studio 2019\ToDoList\ToDoList\obj\Debug\net5.0\ToDoList.AssemblyInfoInputs.cache
 C:\Users\Mahdi\Documents\Visual Studio 2019\ToDoList\ToDoList\obj\Debug\net5.0\ToDoList.AssemblyInfo.cs
@@ -80,3 +79,5 @@ C:\Users\Mahdi\Documents\Visual Studio 2019\ToDoList\ToDoList\bin\Debug\net5.0\M
 C:\Users\Mahdi\Documents\Visual Studio 2019\ToDoList\ToDoList\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Mahdi\Documents\Visual Studio 2019\ToDoList\ToDoList\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\Mahdi\Documents\Visual Studio 2019\ToDoList\ToDoList\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Mahdi\Documents\Visual Studio 2019\ToDoList\ToDoList\obj\Debug\net5.0\ToDoList.csproj.AssemblyReference.cache
+C:\Users\Mahdi\Documents\Visual Studio 2019\ToDoList\ToDoList\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
