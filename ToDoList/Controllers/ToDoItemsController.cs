@@ -42,6 +42,9 @@ namespace ToDoList.Controllers
         }
 
         // GET api/<ToDoItemsController>/5
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)] 
         [SwaggerOperation(Tags = new[] { "ShowTasks" })]
         [HttpGet("{id}")]
         public async Task<ActionResult<ToDoItems>> Get(long id)

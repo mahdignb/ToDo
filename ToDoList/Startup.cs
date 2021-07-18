@@ -13,6 +13,7 @@ using ToDoList.Configuration;
 using ToDoList.Data;
 using AutoMapper;
 using ToDoList.Services;
+using Serilog;
 
 namespace ToDoList
 {
@@ -75,6 +76,10 @@ namespace ToDoList
             app.UseCors("AllowAll");
 
             app.UseRouting();
+
+            app.UseSerilogRequestLogging();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

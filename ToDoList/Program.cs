@@ -14,7 +14,7 @@ namespace ToDoList
                 path: @"c:\toDoList\logs\log.txt",
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
                     rollingInterval: RollingInterval.Day,
-                    restrictedToMinimumLevel: LogEventLevel.Information)
+                    restrictedToMinimumLevel: LogEventLevel.Debug)
                 .CreateLogger();
             CreateHostBuilder(args).Build().Run();
         }

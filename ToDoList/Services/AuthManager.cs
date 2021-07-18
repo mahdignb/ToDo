@@ -35,7 +35,7 @@ namespace ToDoList.Services
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredintial, List<Claim> claims)
         {
             var jwtSettings = _configuration.GetSection("Jwt");
-            var expiration = DateTime.Now.AddMinutes((double.Parse)(jwtSettings.GetSection("lifetime").Value));
+            var expiration = DateTime.UtcNow.AddMinutes((double.Parse)(jwtSettings.GetSection("lifetime").Value));
             var token = new JwtSecurityToken(
                 issuer: jwtSettings.GetSection("Issuer").Value,
                 claims: claims,
