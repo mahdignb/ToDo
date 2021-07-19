@@ -12,6 +12,8 @@ namespace ToDoList
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.File(
                 path: @"c:\toDoList\logs\log.txt",
+                    //Azure deployment log
+                    //path: "logs\\log.txt",
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
                     rollingInterval: RollingInterval.Day,
                     restrictedToMinimumLevel: LogEventLevel.Debug)

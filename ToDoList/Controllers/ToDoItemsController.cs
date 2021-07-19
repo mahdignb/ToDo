@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Google.Apis.Auth.AspNetCore3;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ToDoList.Data;
 using Serilog;
-using Microsoft.AspNetCore.Http;
-
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ToDoList.Controllers
@@ -26,8 +27,9 @@ namespace ToDoList.Controllers
         }
 
         // GET: api/<ToDoItemsController>
+        [Authorize(Roles = "Administrator")]
         [SwaggerOperation(Tags = new[] { "ShowTasks" })]
-        [HttpGet(Name ="ShowTasks")]
+        [HttpGet(Name = "ShowTasks")]
         public async Task<ActionResult<IEnumerable<ToDoItems>>> Get()
         {
             return await _context.toDoItems.ToListAsync();
@@ -42,9 +44,9 @@ namespace ToDoList.Controllers
         }
 
         // GET api/<ToDoItemsController>/5
-        [Authorize]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)] 
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [SwaggerOperation(Tags = new[] { "ShowTasks" })]
         [HttpGet("{id}")]
         public async Task<ActionResult<ToDoItems>> Get(long id)
@@ -60,6 +62,7 @@ namespace ToDoList.Controllers
         }
 
         // POST api/<ToDoItemsController>
+        [Authorize(Roles = "User")]
         [SwaggerOperation(Tags = new[] { "CreateTasks" })]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ActionName(nameof(ToDoItems))]
@@ -69,15 +72,16 @@ namespace ToDoList.Controllers
             _context.toDoItems.Add(toDo);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(ToDoItems), new { id = toDo.Id },toDo);
+            return CreatedAtAction(nameof(ToDoItems), new { id = toDo.Id }, toDo);
         }
 
         // PUT api/<ToDoItemsController>/5
+        [Authorize(Roles = "User")]
         [SwaggerOperation(Tags = new[] { "UpdateTasks" })]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTodoItem(long id,ToDoItems todoItems)
+        public async Task<IActionResult> UpdateTodoItem(long id, ToDoItems todoItems)
         {
-            if (id !=todoItems.Id)
+            if (id != todoItems.Id)
             {
                 return BadRequest();
             }
@@ -123,4 +127,14 @@ namespace ToDoList.Controllers
         private bool TodoItemExists(long id) =>
              _context.toDoItems.Any(e => e.Id == id);
     }
+    //[GoogleScopedAuthorize(DriveService.ScopeConstants.DriveReadonly)]
+    //public async Task<IActionResult> DriveFileList([FromServices] IGoogleAuthProvider auth)
+    //{
+    //    GoogleCredential credential = await auth.GetCredentialAsync();
+    //    var service = new DriveService(new BaseClientService.Initializer
+    //    {
+    //        HttpClientInitializer = credential
+    //    }) ;
+
+    //}
 }

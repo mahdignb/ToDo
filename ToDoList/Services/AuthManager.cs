@@ -35,7 +35,7 @@ namespace ToDoList.Services
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredintial, List<Claim> claims)
         {
             var jwtSettings = _configuration.GetSection("Jwt");
-            var expiration = DateTime.UtcNow.AddMinutes((double.Parse)(jwtSettings.GetSection("lifetime").Value));
+            var expiration = DateTime.Now.AddMinutes((double.Parse)(jwtSettings.GetSection("lifetime").Value));
             var token = new JwtSecurityToken(
                 issuer: jwtSettings.GetSection("Issuer").Value,
                 claims: claims,
@@ -64,7 +64,7 @@ namespace ToDoList.Services
         {
             var jwtSettings = _configuration.GetSection("Jwt");
             //var key = Environment.GetEnvironmentVariable("KEY");
-            var key = jwtSettings.GetSection("Key").Value;
+            var key = _configuration["Key"];
             var secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
 
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);

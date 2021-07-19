@@ -40,6 +40,7 @@ namespace ToDoList
             //IdentityUser
             services.AddAuthentication();
             services.ConfigureIdentity();
+            services.ConfigureGoogleOAuth();
             services.ConfigureJwt(Configuration);
 
             services.AddCors(o => {
@@ -69,7 +70,13 @@ namespace ToDoList
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDoList v1"));
+            //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDoList v1"));
+            //Configure path for iis
+            app.UseSwaggerUI(c =>
+            {
+                string swaggerJsonBashPath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : "..";
+                c.SwaggerEndpoint($"{swaggerJsonBashPath}/swagger/v1/swagger.json", "ToDoList v1");
+            });
 
             app.UseHttpsRedirection();
 
