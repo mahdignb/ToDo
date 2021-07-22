@@ -56,9 +56,21 @@
               "target": "Package",
               "version": "[1.52.0, )"
             },
+            "Google.Apis.Calendar.v3": {
+              "target": "Package",
+              "version": "[1.52.0.2382, )"
+            },
+            "Google.Apis.Drive.v3": {
+              "target": "Package",
+              "version": "[1.52.0.2383, )"
+            },
             "Microsoft.AspNet.Identity.Core": {
               "target": "Package",
               "version": "[2.2.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[5.0.8, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -97,6 +109,10 @@
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
               "version": "[5.0.8, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",

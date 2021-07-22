@@ -27,7 +27,7 @@ namespace ToDoList.Controllers
             _authManager = authManager;
             //_signInManager = signInManager;
         }
-
+        #region Registeration
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
@@ -58,7 +58,9 @@ namespace ToDoList.Controllers
                 return StatusCode(500);
             }
         }
+        #endregion
 
+        #region Login
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginUserDTO userDTO)
@@ -80,5 +82,6 @@ namespace ToDoList.Controllers
                 return StatusCode(500,ex);
             }
         }
+        #endregion
     }
 }

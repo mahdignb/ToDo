@@ -36,7 +36,10 @@
           "AutoMapper": "10.1.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
           "Google.Apis.Auth.AspNetCore3": "1.52.0",
+          "Google.Apis.Calendar.v3": "1.52.0.2382",
+          "Google.Apis.Drive.v3": "1.52.0.2383",
           "Microsoft.AspNet.Identity.Core": "2.2.3",
+          "Microsoft.AspNetCore.Authentication.Google": "5.0.8",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.8",
           "Microsoft.AspNetCore.Authorization": "5.0.8",
           "Microsoft.AspNetCore.Identity": "2.2.0",
@@ -46,6 +49,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.8",
           "Microsoft.Extensions.Identity.Stores": "5.0.8",
+          "Newtonsoft.Json": "13.0.1",
           "Serilog.AspNetCore": "4.1.0",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Swashbuckle.AspNetCore.Annotations": "6.1.4",
@@ -413,9 +417,24 @@
           "lib/netcoreapp3.0/Google.Apis.Auth.AspNetCore3.dll": {}
         }
       },
+      "Google.Apis.Calendar.v3/1.52.0.2382": {
+        "dependencies": {
+          "Google.Apis": "1.52.0",
+          "Google.Apis.Auth": "1.52.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Calendar.v3.dll": {
+            "assemblyVersion": "1.52.0.2382",
+            "fileVersion": "1.52.0.2382"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Apis.Calendar.v3.dll": {}
+        }
+      },
       "Google.Apis.Core/1.52.0": {
         "dependencies": {
-          "Newtonsoft.Json": "12.0.3"
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.Core.dll": {
@@ -425,6 +444,21 @@
         },
         "compile": {
           "lib/netstandard2.0/Google.Apis.Core.dll": {}
+        }
+      },
+      "Google.Apis.Drive.v3/1.52.0.2383": {
+        "dependencies": {
+          "Google.Apis": "1.52.0",
+          "Google.Apis.Auth": "1.52.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Drive.v3.dll": {
+            "assemblyVersion": "1.52.0.2383",
+            "fileVersion": "1.52.0.2383"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Apis.Drive.v3.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -474,6 +508,17 @@
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http": "2.2.0",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0"
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Google/5.0.8": {
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "assemblyVersion": "5.0.8.0",
+            "fileVersion": "5.0.821.31805"
+          }
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.AspNetCore.Authentication.Google.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer/5.0.8": {
@@ -886,7 +931,7 @@
       "Microsoft.Extensions.DependencyModel/2.0.4": {
         "dependencies": {
           "Microsoft.DotNet.PlatformAbstractions": "2.0.4",
-          "Newtonsoft.Json": "12.0.3",
+          "Newtonsoft.Json": "13.0.1",
           "System.Diagnostics.Debug": "4.3.0",
           "System.Dynamic.Runtime": "4.0.11",
           "System.Linq": "4.3.0"
@@ -1098,11 +1143,11 @@
           "Microsoft.NETCore.Platforms": "3.1.0"
         }
       },
-      "Newtonsoft.Json/12.0.3": {
+      "Newtonsoft.Json/13.0.1": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "12.0.0.0",
-            "fileVersion": "12.0.3.23909"
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
           }
         },
         "compile": {
@@ -3667,12 +3712,26 @@
       "path": "google.apis.auth.aspnetcore3/1.52.0",
       "hashPath": "google.apis.auth.aspnetcore3.1.52.0.nupkg.sha512"
     },
+    "Google.Apis.Calendar.v3/1.52.0.2382": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uw8ge/bV1DiFy607oXz9+JGpnn68UXQjFaesCayeXmBwqnwCsA8wlU9On3v9EYrMptElfmv9u84yyTgEz6WMkQ==",
+      "path": "google.apis.calendar.v3/1.52.0.2382",
+      "hashPath": "google.apis.calendar.v3.1.52.0.2382.nupkg.sha512"
+    },
     "Google.Apis.Core/1.52.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-cgQpnZ9IC5SBNsAFTXHKUMB8bOkBWPLtXcLgwSYkV8oL0FfUdHwrDzH5qrf/mFB9fQIPgJyV6tdUwf2hu1UJ+A==",
       "path": "google.apis.core/1.52.0",
       "hashPath": "google.apis.core.1.52.0.nupkg.sha512"
+    },
+    "Google.Apis.Drive.v3/1.52.0.2383": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-En7zdh3iIqUqcVqccYHr74D71sH4XHtMbzj52tEkbpFYS8yjbNOVVnPh7JCYCnIzg/JQhgbi/mUi03qn8HLiCA==",
+      "path": "google.apis.drive.v3/1.52.0.2383",
+      "hashPath": "google.apis.drive.v3.1.52.0.2383.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",
@@ -3715,6 +3774,13 @@
       "sha512": "sha512-XlVJzJ5wPOYW+Y0J6Q/LVTEyfS4ssLXmt60T0SPP+D8abVhBTl+cgw2gDHlyKYIkcJg7btMVh383NDkMVqD/fg==",
       "path": "microsoft.aspnetcore.authentication.core/2.2.0",
       "hashPath": "microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Google/5.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4wDWumiau69Crz9FBBvqMoqo80J6cpQ7T5Akdz/3jZE3gLPBYvkJwn96cxezt6Q1wdV70lodrHB9J0F20zP9rA==",
+      "path": "microsoft.aspnetcore.authentication.google/5.0.8",
+      "hashPath": "microsoft.aspnetcore.authentication.google.5.0.8.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/5.0.8": {
       "type": "package",
@@ -4143,12 +4209,12 @@
       "path": "microsoft.win32.systemevents/4.7.0",
       "hashPath": "microsoft.win32.systemevents.4.7.0.nupkg.sha512"
     },
-    "Newtonsoft.Json/12.0.3": {
+    "Newtonsoft.Json/13.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
-      "path": "newtonsoft.json/12.0.3",
-      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",

@@ -1,0 +1,73 @@
+﻿
+@using System.Security.Claims;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Google.Apis.Auth.AspNetCore3 sample - Index</title>
+</head>
+<body>
+    <h2>Google.Apis.Auth.AspNetCore3 sample - Index</h2>
+    <p>The following links showcase some of the features provided by Google.Apis.Auth.AspNetCore3</p>
+    <br />
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p><a asp-controller="home" asp-action="logout">Logout</a> - You are currently logged in as @User.FindFirst(ClaimTypes.GivenName)?.Value.</p>
+    }
+    else
+    {
+        <p><a asp-controller="home" asp-action="login">Login</a> - You are not currently logged in.</p>
+    }
+    <p>
+        <a asp-controller="home" asp-action="scopelisting">List current scopes</a> - List all scopes
+        this application is currently authorized for.
+        <ul>
+            <li>Authentication will trigger if there's no authenticated user.</li>
+            <li>This shows how to require authentication without any specific scopes.</li>
+        </ul>
+    </p>
+    <p>
+        <a asp-controller="home" asp-action="drivefilelist">List Google Drive files</a> - Use the Google Drive API to list some of the files
+        that the logged user owns.
+        <ul>
+            <li>Authentication will trigger if there's no authenticated user.</li>
+            <li>If a user is already authenticated but hasn't granted the required scopes, incremental authorization will trigger.</li>
+            <li>This shows how to do incremental authorization via attributes, and how to use the user's credential to access a Google API.</li>
+        </ul>
+    </p>
+    <p>
+        <a asp-controller="home" asp-action="calendarlist">List Calendars</a> - Use the Calendar API to list some of the calendars
+        that the logged user has access to.
+        <ul>
+            <li>Authentication will trigger if there's no authenticated user.</li>
+            <li>If a user is already authenticated but hasn't granted the required scopes, incremental authorization will trigger.</li>
+            <li>This shows how to do incremental authorization via code, and how to use the user's credential to access a Google API.</li>
+        </ul>
+    </p>
+    <p>
+        <a asp-controller="home" asp-action="showtokens">Show OAuth tokens related information</a>
+        <ul>
+            <li>Authentication will trigger if there's no authenticated user.</li>
+            <li>This shows how to inspect OAuth token related information.</li>
+        </ul>
+    </p>
+    <p>
+        <a asp-controller="home" asp-action="forcetokenrefresh">Force access token refresh</a>
+        <ul>
+            <li>Authentication will trigger if there's no authenticated user.</li>
+            <li>
+                This shows how to force OAuth access token refresh.
+                You usually don't need to do this since Google.Apis.Auth.AspNetCore3 will
+                automatically refresh the access token when it's close to expiry.
+            </li>
+        </ul>
+    </p>
+</body>
+</html>

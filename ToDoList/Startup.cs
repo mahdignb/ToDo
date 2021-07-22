@@ -14,6 +14,14 @@ using ToDoList.Data;
 using AutoMapper;
 using ToDoList.Services;
 using Serilog;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace ToDoList
 {
@@ -32,6 +40,8 @@ namespace ToDoList
             //MemoryDatabase
             //services.AddDbContext<DatabaseContext>(opt => opt.UseInMemoryDatabase("ToDoList"));
 
+            services.AddControllersWithViews();
+            services.AddRazorPages();
             //Database Connection
             services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")
@@ -40,8 +50,54 @@ namespace ToDoList
             //IdentityUser
             services.AddAuthentication();
             services.ConfigureIdentity();
-            services.ConfigureGoogleOAuth();
+            //services.ConfigureGoogleOAuth();
             services.ConfigureJwt(Configuration);
+
+            #region Github Configure
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = "GitHub";
+            //})
+            //   .AddCookie()
+            //   .AddOAuth("GitHub", options =>
+            //   {
+            //       options.ClientId = Configuration["GitHub:ClientId"];
+            //       options.ClientSecret = Configuration["GitHub:ClientSecret"];
+            //       options.CallbackPath = new PathString("/github-oauth");
+
+            //       options.AuthorizationEndpoint = "https://github.com/login/oauth/authorize";
+            //       options.TokenEndpoint = "https://github.com/login/oauth/access_token";
+            //       options.UserInformationEndpoint = "https://api.github.com/user";
+
+            //       options.SaveTokens = true;
+
+            //       options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
+            //       options.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
+            //       options.ClaimActions.MapJsonKey("urn:github:login", "login");
+            //       options.ClaimActions.MapJsonKey("urn:github:url", "html_url");
+            //       options.ClaimActions.MapJsonKey("urn:github:avatar", "avatar_url");
+
+            //       options.Events = new OAuthEvents
+            //       {
+            //           OnCreatingTicket = async context =>
+            //           {
+            //               var request = new HttpRequestMessage(HttpMethod.Get, context.Options.UserInformationEndpoint);
+            //               request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //               request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", context.AccessToken);
+
+            //               var response = await context.Backchannel.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, context.HttpContext.RequestAborted);
+            //               response.EnsureSuccessStatusCode();
+
+            //               var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+
+            //               context.RunClaimActions(json.RootElement);
+            //           }
+            //       };
+            //   });
+            #endregion
+
 
             services.AddCors(o => {
                 o.AddPolicy("AllowAll", builder =>
@@ -94,6 +150,13 @@ namespace ToDoList
             {
                 endpoints.MapControllers();
             });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=GoogleOAuth}/{action=Index}/{id?}");
+            //    endpoints.MapRazorPages();
+            //});
         }
     }
 }

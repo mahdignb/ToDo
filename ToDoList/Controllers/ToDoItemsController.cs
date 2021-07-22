@@ -4,6 +4,7 @@ using Google.Apis.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ToDoList.Data;
 using Serilog;
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Google.Apis.Drive.v3;
 
 namespace ToDoList.Controllers
 {
@@ -26,6 +27,7 @@ namespace ToDoList.Controllers
             _context = context;
         }
 
+        #region ShowTasks(admin)
         // GET: api/<ToDoItemsController>
         [Authorize(Roles = "Administrator")]
         [SwaggerOperation(Tags = new[] { "ShowTasks" })]
@@ -42,9 +44,11 @@ namespace ToDoList.Controllers
             //    return NotFound();
             //}
         }
+        #endregion
 
+        #region ShowTask(User)
         // GET api/<ToDoItemsController>/5
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [SwaggerOperation(Tags = new[] { "ShowTasks" })]
@@ -60,7 +64,9 @@ namespace ToDoList.Controllers
 
             return todoItem;
         }
+        #endregion
 
+        #region CreateTasks(User)
         // POST api/<ToDoItemsController>
         [Authorize(Roles = "User")]
         [SwaggerOperation(Tags = new[] { "CreateTasks" })]
@@ -74,7 +80,9 @@ namespace ToDoList.Controllers
 
             return CreatedAtAction(nameof(ToDoItems), new { id = toDo.Id }, toDo);
         }
+        #endregion
 
+        #region UpdateTasks(User)
         // PUT api/<ToDoItemsController>/5
         [Authorize(Roles = "User")]
         [SwaggerOperation(Tags = new[] { "UpdateTasks" })]
@@ -105,8 +113,9 @@ namespace ToDoList.Controllers
 
             return NoContent();
         }
+        #endregion
 
-
+        #region DeleteTasks
         // DELETE api/<ToDoItemsController>/5
         [HttpDelete("{id}")]
         [SwaggerOperation(Tags = new[] { "DeleteTasks" })]
@@ -124,9 +133,12 @@ namespace ToDoList.Controllers
 
             return NoContent();
         }
+        #endregion
+
         private bool TodoItemExists(long id) =>
              _context.toDoItems.Any(e => e.Id == id);
     }
+
     //[GoogleScopedAuthorize(DriveService.ScopeConstants.DriveReadonly)]
     //public async Task<IActionResult> DriveFileList([FromServices] IGoogleAuthProvider auth)
     //{
@@ -134,7 +146,9 @@ namespace ToDoList.Controllers
     //    var service = new DriveService(new BaseClientService.Initializer
     //    {
     //        HttpClientInitializer = credential
-    //    }) ;
-
+    //    });
+    //    var files = await service.Files.List().ExecuteAsync();
+    //    var fileNames = files.Files.Select(x => x.Name).ToList();
+    //    return View(fileNames);
     //}
 }

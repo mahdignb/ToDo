@@ -1,0 +1,34 @@
+﻿@using Google.Apis.Auth.AspNetCore3.IntegrationTests.Controllers
+@using System.Security.Claims;
+
+@model HomeController.ForceTokenRefreshModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Google.Apis.Auth.AspNetCore3 sample - Force token refresh</title>
+</head>
+<body>
+    <h2>Google.Apis.Auth.AspNetCore3 sample - Force token refresh</h2>
+    <p>You are logged in as @User.FindFirst(ClaimTypes.GivenName)?.Value.</p>
+    <p>Here's token information from before and after the refresh.</p>
+    <ul>
+        @foreach (var result in @Model.Results)
+        {
+            <li>@result</li>
+        }
+    </ul>
+    <form asp-controller="home" asp-action="ForceTokenRefreshCheckPersisted" method="post">
+        @* Passing access token for demonstration purposes only - don't ever do this in production code! *@
+        <input name="expectedAccessToken" type="hidden" value="@Model.AccessToken" />
+        <button type="submit">Confirm refreshed token persisted...</button>
+    </form>
+    <p><a asp-controller="home" asp-action="index">Index</a></p>
+</body>
+</html>

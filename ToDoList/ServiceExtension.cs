@@ -13,6 +13,18 @@ namespace ToDoList
 {
     public static class ServiceExtension
     {
+        //private readonly IConfiguration _configuration;
+        //public Startup(IConfiguration configuration)
+        //{
+        //    Configuration = configuration;
+        //}
+
+        //public IConfiguration Configuration { get; }
+        //public ServiceExtension(IConfiguration configuration)
+        //{
+        //    _configuration=configuration;
+        //}
+
         //Extension Method for configuring identity
         public static void ConfigureIdentity(this IServiceCollection services)
         {
@@ -47,16 +59,20 @@ namespace ToDoList
         {
             services.AddAuthentication(o =>
             {
-                o.DefaultChallengeScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
-                o.DefaultForbidScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
+                //o.DefaultChallengeScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
+                //o.DefaultForbidScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
                 o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
             })
-                .AddCookie()
-                .AddGoogleOpenIdConnect(options =>
+                .AddCookie(option =>
                 {
-                    options.ClientId = "180671859087-1qmud5jgld2oe1apdgt0if781njpk4k5.apps.googleusercontent.com";
-                    options.ClientSecret = "Zc9H2fHsOw7aZJJ3QfZQ_Ox2";
+                    option.LoginPath = "/account/google-login";
+                })
+                .AddGoogle(options =>
+                {
+                    //IConfigurationSection googleAuthNSection =Configuration.GetSection("Authentication:Google");
+                    options.ClientId = "743747110642-rs7o8trdv6ab68dpvfg8vm6ttv31svqb.apps.googleusercontent.com";
+                    options.ClientSecret = "OUgUNvqyIuTaTEypFv7iW6ke";
                 });
         }
     }
