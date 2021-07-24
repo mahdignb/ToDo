@@ -12,29 +12,31 @@ using System.Text.Json;
 
 namespace ToDoList.Controllers
 {
-    //[AllowAnonymous,Route("account")]
-    //[ApiController]
+    [AllowAnonymous, Route("account")]
+    [ApiController]
+    [ApiExplorerSettings(IgnoreApi =true)]
     public class GoogleAccountController : ControllerBase
     {
-        //[Route("google-login")]
+        [Route("google-login")]
         public IActionResult GoogleLogin()
         {
             var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
-        //[Route("google-response")]
-        //public async Task<IActionResult> GoogleResponse()
-        //{
-        //    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        [Route("google-response")]
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-        //    var claims = result.Principal.Identities
-        //        .FirstOrDefault().Claims.Select(claim => new
-        //        {
-        //            claim.Issuer,
-        //            claim.OriginalIssuer,
-        //            claim.Type,
-        //            claim.Value
-        //        });
-        //    return Json(claims);
+            var claims = result.Principal.Identities
+                .FirstOrDefault().Claims.Select(claim => new
+                {
+                    claim.Issuer,
+                    claim.OriginalIssuer,
+                    claim.Type,
+                    claim.Value
+                });
+            return Ok(claims);
         }
     }
+}

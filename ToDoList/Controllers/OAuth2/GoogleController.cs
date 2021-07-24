@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Google.Apis.Auth.AspNetCore3.IntegrationTests.Controllers
 {
-    //[Route("[controller]/[action]")]
+    [Route("[controller]/[action]")]
     [Authorize]
     public class GoogleController : Controller
     {
@@ -24,6 +24,7 @@ namespace Google.Apis.Auth.AspNetCore3.IntegrationTests.Controllers
         /// </summary>
         ///
         [AllowAnonymous]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult Index()
         {
             return View();
@@ -35,6 +36,7 @@ namespace Google.Apis.Auth.AspNetCore3.IntegrationTests.Controllers
         /// will trigger authentication if necessary.
         /// </summary>
         [Authorize]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult Login()
         {
             return View();
