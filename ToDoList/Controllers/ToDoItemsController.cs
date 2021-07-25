@@ -138,17 +138,4 @@ namespace ToDoList.Controllers
         private bool TodoItemExists(long id) =>
              _context.toDoItems.Any(e => e.Id == id);
     }
-
-    //[GoogleScopedAuthorize(DriveService.ScopeConstants.DriveReadonly)]
-    //public async Task<IActionResult> DriveFileList([FromServices] IGoogleAuthProvider auth)
-    //{
-    //    GoogleCredential credential = await auth.GetCredentialAsync();
-    //    var service = new DriveService(new BaseClientService.Initializer
-    //    {
-    //        HttpClientInitializer = credential
-    //    });
-    //    var files = await service.Files.List().ExecuteAsync();
-    //    var fileNames = files.Files.Select(x => x.Name).ToList();
-    //    return View(fileNames);
-    //}
 }

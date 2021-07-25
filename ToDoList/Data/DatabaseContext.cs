@@ -17,6 +17,12 @@ namespace ToDoList.Data
         public DbSet<ToDoItems> toDoItems { get; set; }
         public DbSet<User> Users { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySQL("Server=localhost;Database=ToDoItems;user=root;password=password");
+        }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

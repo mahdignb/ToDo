@@ -42,15 +42,20 @@ namespace ToDoList
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-            //Database Connection
-            services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(
-                Configuration.GetConnectionString("DefaultConnection")
-                ));
+            //Database Connections
+            //services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(
+            //    Configuration.GetConnectionString("DefaultConnection")
+            //    ));
+
+
+            services.AddDbContext<DatabaseContext>(option => option.UseMySQL(
+               Configuration.GetConnectionString("MySql")
+               ));
 
             //IdentityUser
             services.AddAuthentication();
             services.ConfigureIdentity();
-            //services.ConfigureGoogleOAuth();
+            services.ConfigureGoogleOAuth();
             services.ConfigureJwt(Configuration);
 
             #region Github Configure

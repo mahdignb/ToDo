@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mahdi\\Documents\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj": {}
+    "E:\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mahdi\\Documents\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj": {
+    "E:\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mahdi\\Documents\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj",
+        "projectUniqueName": "E:\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj",
         "projectName": "ToDoList",
-        "projectPath": "C:\\Users\\Mahdi\\Documents\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj",
+        "projectPath": "E:\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj",
         "packagesPath": "C:\\Users\\Mahdi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mahdi\\Documents\\Visual Studio 2019\\ToDoList\\ToDoList\\obj\\",
+        "outputPath": "E:\\Visual Studio 2019\\ToDoList\\ToDoList\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -110,6 +110,14 @@
               "target": "Package",
               "version": "[5.0.8, )"
             },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.26, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
@@ -125,6 +133,10 @@
             "Swashbuckle.AspNetCore.Annotations": {
               "target": "Package",
               "version": "[6.1.4, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.12.0, )"
             }
           },
           "imports": [
@@ -145,7 +157,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
