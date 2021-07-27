@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,12 +15,8 @@ namespace ToDoList.Data
 
         public string LastName { get; set; }
 
-        //public  string UserName { get; set; }
-
-        //public  string Password { get; set; }
-
-        //public string Email { get; set; }
-
-        //public bool IsAuthenticated { get; set; }
+        [ForeignKey(nameof(ToDoItems))]
+        public int TodoItemsId { get; set; }
+        public ToDoItems todoItem { get; set; }
     }
 }

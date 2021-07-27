@@ -16,14 +16,13 @@ namespace ToDoList.Data
 
         public TaskStatus Status { get; set; }
 
-        //[ForeignKey(nameof(User.Name))]
         public string Author { get; set; }
 
         public string Description { get; set; }
 
-        [ForeignKey(nameof(User))]
-        public long UserId { get; set; }
+        //[ForeignKey(nameof(User))]
+        //public long UserId { get; set; }
 
-        public User Users { get; set; }
+        //public User Users { get; set; }
     }
 }

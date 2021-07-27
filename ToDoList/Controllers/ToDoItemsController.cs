@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using ToDoList.Data;
 using Serilog;
 using Google.Apis.Drive.v3;
+using System;
 
 namespace ToDoList.Controllers
 {
@@ -135,6 +136,28 @@ namespace ToDoList.Controllers
         }
         #endregion
 
+
+        [ActionName(nameof(ToDoItems))]
+        [SwaggerOperation(Tags = new[] { "CreateTasks" })]
+        [Route("test/{id}")]
+        [HttpPut]
+        public async Task<IActionResult> CreateTodoItem(long id, ToDoItems todo)
+        {
+            if (id != todo.Id)
+            {
+                return BadRequest();
+            }
+            _context.Entry(todo).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+            }
+            return Accepted();
+        }
         private bool TodoItemExists(long id) =>
              _context.toDoItems.Any(e => e.Id == id);
     }
