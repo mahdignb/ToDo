@@ -19,13 +19,11 @@ namespace ToDoList.Controllers
         //private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
         private readonly IAuthManager _authManager;
-
         public AccountController(UserManager<User> userManager,IMapper mapper,IAuthManager authManager)
         {
             _userManager = userManager;
             _mapper = mapper;
             _authManager = authManager;
-            //_signInManager = signInManager;
         }
         #region Registeration
         [HttpPost]
@@ -75,7 +73,8 @@ namespace ToDoList.Controllers
                 {
                     return Unauthorized();
                 }
-                return Accepted(new { Token = await _authManager.CreateToken() });
+                return Accepted(new { Token = await _authManager.CreateToken()});
+                
             }
             catch (Exception ex)
             {

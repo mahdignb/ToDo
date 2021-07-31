@@ -45,15 +45,15 @@ namespace ToDoList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9215259e-f21a-4330-9c0a-ccd77d91bd25",
-                            ConcurrencyStamp = "27fda11f-dcda-4975-8392-367cbb9f6a2e",
+                            Id = "2d35a53d-4549-4d43-a155-158dd453e8c3",
+                            ConcurrencyStamp = "14cf1bf1-4fda-40ac-8dfc-640e75e8b5a8",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "a5f62c7d-86b4-49c4-813e-c2776b19a05f",
-                            ConcurrencyStamp = "1384eb29-fab2-4c3d-8b97-ed74882e9acc",
+                            Id = "7302174a-04d5-4c1c-bc1c-9c5e0f61e5a2",
+                            ConcurrencyStamp = "6a94de62-c9a7-4a72-87ba-8d874abc2a84",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -179,15 +179,12 @@ namespace ToDoList.Migrations
                     b.Property<string>("TaskName")
                         .HasColumnType("text");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("UsersId")
+                    b.Property<string>("UserId")
                         .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("toDoItems");
                 });
@@ -239,6 +236,9 @@ namespace ToDoList.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
@@ -315,11 +315,11 @@ namespace ToDoList.Migrations
 
             modelBuilder.Entity("ToDoList.Data.ToDoItems", b =>
                 {
-                    b.HasOne("ToDoList.Data.User", "Users")
+                    b.HasOne("ToDoList.Data.User", "User")
                         .WithMany()
-                        .HasForeignKey("UsersId");
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

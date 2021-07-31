@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace ToDoList.Migrations
 {
-    public partial class Database_Creation : Migration
+    public partial class Database_Created : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,6 +29,7 @@ namespace ToDoList.Migrations
                     Id = table.Column<string>(type: "varchar(256)", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: true),
                     LastName = table.Column<string>(type: "text", nullable: true),
+                    RefreshToken = table.Column<string>(type: "text", nullable: true),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
@@ -165,15 +166,14 @@ namespace ToDoList.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     Author = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    UsersId = table.Column<string>(type: "varchar(256)", nullable: true)
+                    UserId = table.Column<string>(type: "varchar(256)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_toDoItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_toDoItems_AspNetUsers_UsersId",
-                        column: x => x.UsersId,
+                        name: "FK_toDoItems_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -182,12 +182,12 @@ namespace ToDoList.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "9215259e-f21a-4330-9c0a-ccd77d91bd25", "27fda11f-dcda-4975-8392-367cbb9f6a2e", "User", "USER" });
+                values: new object[] { "2d35a53d-4549-4d43-a155-158dd453e8c3", "14cf1bf1-4fda-40ac-8dfc-640e75e8b5a8", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "a5f62c7d-86b4-49c4-813e-c2776b19a05f", "1384eb29-fab2-4c3d-8b97-ed74882e9acc", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "7302174a-04d5-4c1c-bc1c-9c5e0f61e5a2", "6a94de62-c9a7-4a72-87ba-8d874abc2a84", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -227,9 +227,9 @@ namespace ToDoList.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_toDoItems_UsersId",
+                name: "IX_toDoItems_UserId",
                 table: "toDoItems",
-                column: "UsersId");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

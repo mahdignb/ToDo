@@ -15,8 +15,10 @@ namespace ToDoList.Data
 
         public string LastName { get; set; }
 
-        [ForeignKey(nameof(ToDoItems))]
-        public int TodoItemsId { get; set; }
-        public ToDoItems todoItem { get; set; }
+        public string RefreshToken { get; set; }
+
+        //[ForeignKey(nameof(ToDoItems))]
+        //public int TodoItemsId { get; set; }
+        //public ToDoItems todoItem { get; set; }
     }
 }

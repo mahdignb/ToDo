@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ToDoList.Data.Constants
 {
-    public enum TaskStatus
+    public enum Status
     {
         NotStarted = 1 ,
         Doing ,

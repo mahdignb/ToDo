@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ToDoList.Controllers
 {
-    [Route("[controller]/[action]")]
-    public class GithubController:Controller
-    {
-        [HttpGet]
-        public IActionResult Login(string returnUrl= "/")
-        {
-            return Challenge(new AuthenticationProperties() { RedirectUri = returnUrl });
-        }
-    }
+    //[Route("[controller]/[action]")]
+    //public class GithubController:Controller
+    //{
+    //    [HttpGet]
+    //    public IActionResult Login(string returnUrl= "/")
+    //    {
+    //        return Challenge(new AuthenticationProperties() { RedirectUri = returnUrl });
+    //    }
+    //}
 }

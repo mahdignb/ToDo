@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj": {}
+    "D:\\ToDo\\ToDoList\\ToDoList.csproj": {}
   },
   "projects": {
-    "E:\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj": {
+    "D:\\ToDo\\ToDoList\\ToDoList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj",
+        "projectUniqueName": "D:\\ToDo\\ToDoList\\ToDoList.csproj",
         "projectName": "ToDoList",
-        "projectPath": "E:\\Visual Studio 2019\\ToDoList\\ToDoList\\ToDoList.csproj",
+        "projectPath": "D:\\ToDo\\ToDoList\\ToDoList.csproj",
         "packagesPath": "C:\\Users\\Mahdi\\.nuget\\packages\\",
-        "outputPath": "E:\\Visual Studio 2019\\ToDoList\\ToDoList\\obj\\",
+        "outputPath": "D:\\ToDo\\ToDoList\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -67,6 +67,10 @@
             "Microsoft.AspNet.Identity.Core": {
               "target": "Package",
               "version": "[2.2.3, )"
+            },
+            "Microsoft.AspNet.WebApi.Core": {
+              "target": "Package",
+              "version": "[5.2.7, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
@@ -137,6 +141,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[6.12.0, )"
+            },
+            "System.ServiceModel.Http": {
+              "target": "Package",
+              "version": "[4.8.1, )"
             }
           },
           "imports": [
