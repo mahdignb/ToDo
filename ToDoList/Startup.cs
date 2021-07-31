@@ -22,6 +22,8 @@ using Microsoft.AspNetCore.Authentication.OAuth;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNet.Identity;
 
 namespace ToDoList
 {
@@ -40,8 +42,7 @@ namespace ToDoList
             //MemoryDatabase
             //services.AddDbContext<DatabaseContext>(opt => opt.UseInMemoryDatabase("ToDoList"));
 
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+
             //Database Connections
             //services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(
             //    Configuration.GetConnectionString("DefaultConnection")
@@ -113,11 +114,32 @@ namespace ToDoList
 
             services.AddAutoMapper(typeof(MapperInitializer));
             services.AddScoped<IAuthManager, AuthManager>();
+            //services.AddTransient<UserManager<User>>();
 
             services.AddSwaggerGen(c =>
             {
                 c.EnableAnnotations();
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ToDoList", Version = "v1" });
+                var securitySchema = new OpenApiSecurityScheme
+                {
+                    Description = "Using the Authorization header with the Bearer scheme.",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                };
+
+                c.AddSecurityDefinition("Bearer", securitySchema);
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+          {
+              { securitySchema, new[] { "Bearer" } }
+          });
             });
             services.AddControllers();
         }
