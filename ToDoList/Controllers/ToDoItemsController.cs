@@ -100,6 +100,7 @@ namespace ToDoList.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<string>> UpdateTodoItem(long id, ToDoItems todoItems)
         {
+            todoItems.Id = id;
             if (id != todoItems.Id && todoItems.Author != User.Identity.Name)
             {
                 return BadRequest();
