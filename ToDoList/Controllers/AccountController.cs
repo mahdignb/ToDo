@@ -39,6 +39,11 @@ namespace ToDoList.Controllers
                 //var user = new User();
                 var user = _mapper.Map<User>(userDTO);
                 user.UserName = userDTO.Email;
+                var role = userDTO.Roles.FirstOrDefault().ToLower();
+                if (role != "admin" || role != "user")
+                {
+                    role = "User";
+                }
                 var result = await _userManager.CreateAsync(user,userDTO.Password);
                 if (!result.Succeeded)
                 {
@@ -48,7 +53,7 @@ namespace ToDoList.Controllers
                     }
                     return BadRequest(ModelState);
                 }
-                await _userManager.AddToRolesAsync(user, userDTO.Roles);
+                await _userManager.AddToRoleAsync(user,role);
                 return Accepted();
             }
             catch (Exception)
